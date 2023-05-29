@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Prayer Times</string>
+    <string name="app_name">Prayer App</string>
+    <string name="previous_day">Previous day</string>
+    <string name="next_day">Next day</string>
+    <string name="next_prayer">Next Prayer</string>
+    <string name="time_left">Time left</string>
+    <string name="fajr">Fajr</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="dhuhr">Dhuhr</string>
+    <string name="asr">Asr</string>
+    <string name="maghrib">Maghrib</string>
+    <string name="isha">Isha</string>
+    <string name="address">%1$s, %2$s</string>
+    <string name="time_remaining">%1$d hr %2$d min</string>
 </resources>
