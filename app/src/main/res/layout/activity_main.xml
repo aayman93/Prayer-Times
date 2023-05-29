@@ -7,16 +7,66 @@
     android:background="@drawable/background"
     tools:context=".ui.MainActivity">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/main_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="button_previous, text_date, text_address, button_next, view, label_next_prayer, text_next_prayer, label_time_left, text_time_left, textView, textView2, textView3, textView4, textView5, textView6, fajr_time, sunrise_time, dhuhr_time, asr_time, maghrib_time, isha_time"
+        tools:visibility="visible" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/error_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="error_text, button_try_again" />
+
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Error getting prayer times data" />
+
+    <Button
+        android:id="@+id/button_try_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/try_again"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/error_text" />
+
     <ImageView
         android:id="@+id/button_previous"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:contentDescription="@string/previous_day"
         android:src="@drawable/ic_arrow_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/text_date"
         app:layout_constraintBottom_toBottomOf="@id/text_address"
-        android:contentDescription="@string/previous_day" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_date" />
 
     <TextView
         android:id="@+id/text_date"
@@ -24,89 +74,89 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="4dp"
         android:layout_marginTop="16dp"
-        tools:text="29 May 2023"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_next"
         app:layout_constraintStart_toEndOf="@id/button_previous"
-        app:layout_constraintEnd_toStartOf="@id/button_next" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="29 May 2023" />
 
     <TextView
         android:id="@+id/text_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="4dp"
-        tools:text="Mansoura, Egypt"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-        app:layout_constraintTop_toBottomOf="@id/text_date"
+        app:layout_constraintEnd_toStartOf="@id/button_next"
         app:layout_constraintStart_toEndOf="@id/button_previous"
-        app:layout_constraintEnd_toStartOf="@id/button_next" />
+        app:layout_constraintTop_toBottomOf="@id/text_date"
+        tools:text="Mansoura, Egypt" />
 
     <ImageView
         android:id="@+id/button_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_forward"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/text_date"
+        android:contentDescription="@string/next_day"
+        android:src="@drawable/ic_arrow_forward"
         app:layout_constraintBottom_toBottomOf="@id/text_address"
-        android:contentDescription="@string/next_day" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_date" />
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/black"
         android:layout_marginTop="16dp"
+        android:background="@color/black"
         app:layout_constraintTop_toBottomOf="@id/text_address" />
 
     <TextView
         android:id="@+id/label_next_prayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next_prayer"
         android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/text_next_prayer"
-        app:layout_constraintTop_toTopOf="@id/label_time_left"
+        android:text="@string/next_prayer"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
         app:layout_constraintBottom_toBottomOf="@id/text_time_left"
+        app:layout_constraintEnd_toStartOf="@id/text_next_prayer"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/label_time_left" />
 
     <TextView
         android:id="@+id/text_next_prayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Isha"
-        android:textStyle="bold"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-        app:layout_constraintStart_toEndOf="@id/label_next_prayer"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/label_next_prayer"
         app:layout_constraintEnd_toStartOf="@id/label_time_left"
-        app:layout_constraintBaseline_toBaselineOf="@id/label_next_prayer" />
+        app:layout_constraintStart_toEndOf="@id/label_next_prayer"
+        tools:text="Isha" />
 
     <TextView
         android:id="@+id/label_time_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/time_left"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:text="@string/time_left"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-        app:layout_constraintTop_toBottomOf="@id/view"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/text_next_prayer"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/view" />
 
     <TextView
         android:id="@+id/text_time_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="1 hr 16 min"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-        app:layout_constraintTop_toBottomOf="@id/label_time_left"
+        app:layout_constraintEnd_toEndOf="@id/label_time_left"
         app:layout_constraintStart_toStartOf="@id/label_time_left"
-        app:layout_constraintEnd_toEndOf="@id/label_time_left" />
+        app:layout_constraintTop_toBottomOf="@id/label_time_left"
+        tools:text="1 hr 16 min" />
 
     <TextView
         android:id="@+id/textView"
@@ -123,12 +173,12 @@
         android:id="@+id/fajr_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
-        tools:text="4:30 AM"
+        android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView" />
+        tools:text="4:30 AM" />
 
     <TextView
         android:id="@+id/textView2"
@@ -145,12 +195,12 @@
         android:id="@+id/sunrise_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
-        tools:text="6:05 AM"
+        android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView2" />
+        tools:text="6:05 AM" />
 
     <TextView
         android:id="@+id/textView3"
@@ -167,12 +217,12 @@
         android:id="@+id/dhuhr_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
-        tools:text="1:44 PM"
+        android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView3" />
+        tools:text="1:44 PM" />
 
     <TextView
         android:id="@+id/textView4"
@@ -189,12 +239,12 @@
         android:id="@+id/asr_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
-        tools:text="5:52 PM"
+        android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView4" />
+        tools:text="5:52 PM" />
 
     <TextView
         android:id="@+id/textView5"
@@ -211,20 +261,20 @@
         android:id="@+id/maghrib_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
-        tools:text="9:23 PM"
+        android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView5" />
+        tools:text="9:23 PM" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@string/isha"
         android:layout_marginTop="16dp"
+        android:text="@string/isha"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -233,11 +283,11 @@
         android:id="@+id/isha_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
-        tools:text="10:55 PM"
+        android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView6" />
+        tools:text="10:55 PM" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

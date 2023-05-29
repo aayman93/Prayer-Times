@@ -2,6 +2,7 @@ package com.github.aayman93.prayertimes.di
 
 import com.github.aayman93.prayertimes.data.repositories.DefaultPrayersRepository
 import com.github.aayman93.prayertimes.data.repositories.PrayersRepository
+import com.github.aayman93.prayertimes.data.source.local.PrayersDao
 import com.github.aayman93.prayertimes.data.source.remote.PrayersApi
 import dagger.Module
 import dagger.Provides
@@ -16,8 +17,9 @@ object AppModule {
     @Provides
     @Singleton
     fun providePrayersRepository(
-        api: PrayersApi
+        api: PrayersApi,
+        dao: PrayersDao
     ): PrayersRepository {
-        return DefaultPrayersRepository(api)
+        return DefaultPrayersRepository(api, dao)
     }
 }

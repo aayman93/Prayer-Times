@@ -1,6 +1,6 @@
 package com.github.aayman93.prayertimes.data.models
 
-data class PrayerTimes(
+data class PrayersInfo(
     val asr: String,
     val dhuhr: String,
     val fajr: String,
