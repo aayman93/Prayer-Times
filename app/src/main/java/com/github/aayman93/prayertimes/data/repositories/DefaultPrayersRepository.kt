@@ -1,6 +1,5 @@
 package com.github.aayman93.prayertimes.data.repositories
 
-import android.util.Log
 import com.github.aayman93.prayertimes.data.models.PrayersInfo
 import com.github.aayman93.prayertimes.data.models.toExternalModel
 import com.github.aayman93.prayertimes.data.models.toLocalModel
@@ -28,7 +27,6 @@ class DefaultPrayersRepository @Inject constructor(
         return withContext(Dispatchers.IO) {
             val remotePrayersInfoList = getPrayersTimes(year, month, latitude, longitude)
             if (remotePrayersInfoList.isNotEmpty()) {
-                Log.d("Repo", remotePrayersInfoList.size.toString())
                 clearData()
                 insertData(remotePrayersInfoList.map { it.toLocalModel() })
             }

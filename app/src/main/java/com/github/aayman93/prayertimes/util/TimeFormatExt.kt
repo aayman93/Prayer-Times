@@ -9,3 +9,9 @@ fun String.convertTimeFormat(): String {
     val newFormat = SimpleDateFormat("hh:mm aaa", Locale.getDefault())
     return newFormat.format(time!!)
 }
+
+fun String.parseTime(): String {
+    val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+    val time = timeFormat.parse(this)
+    return timeFormat.format(time!!)
+}
