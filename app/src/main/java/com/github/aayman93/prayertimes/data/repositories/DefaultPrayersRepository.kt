@@ -6,11 +6,12 @@ import com.github.aayman93.prayertimes.data.models.toLocalModel
 import com.github.aayman93.prayertimes.data.source.local.PrayersDao
 import com.github.aayman93.prayertimes.data.source.local.entites.LocalPrayersInfo
 import com.github.aayman93.prayertimes.data.source.remote.PrayersApi
-import com.github.aayman93.prayertimes.data.source.remote.models.RemotePrayersInfo
+import com.github.aayman93.prayertimes.data.source.remote.models.prayer_times.RemotePrayersInfo
+import com.github.aayman93.prayertimes.data.source.remote.models.qibla.Qibla
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 import javax.inject.Inject
+import kotlin.Exception
 
 class DefaultPrayersRepository @Inject constructor(
     private val api: PrayersApi,
@@ -57,6 +58,24 @@ class DefaultPrayersRepository @Inject constructor(
     override suspend fun getPrayersInfoByDate(dayDate: Int): PrayersInfo? {
         return withContext(Dispatchers.IO) {
             dao.getPrayersInfoByDate(dayDate).toExternalModel()
+        }
+    }
+
+    override suspend fun getQiblaDirections(
+        latitude: Double,
+        longitude: Double
+    ): Qibla? {
+        return withContext(Dispatchers.IO) {
+            return@withContext try {
+                val response = api.getQiblaDirections(latitude, longitude)
+                if (response.code == 0) {
+                    response.data
+                } else {
+                    null
+                }
+            } catch (e: Exception) {
+                null
+            }
         }
     }
 

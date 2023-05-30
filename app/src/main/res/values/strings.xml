@@ -13,4 +13,5 @@
     <string name="address">%1$s, %2$s</string>
     <string name="time_remaining">%1$d hr %2$d min</string>
     <string name="try_again">Try again</string>
+    <string name="show_qibla_directions_on_map">Show Qibla Directions on Map</string>
 </resources>

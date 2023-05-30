@@ -107,6 +107,13 @@ class MainActivity : AppCompatActivity() {
         binding.buttonTryAgain.setOnClickListener {
             getPrayerTimes()
         }
+
+        binding.buttonShowQibla.setOnClickListener {
+            val intent = Intent(this, QiblaActivity::class.java)
+            intent.putExtra(INTENT_EXTRA_LATITUDE, viewModel.userLatitude)
+            intent.putExtra(INTENT_EXTRA_LONGITUDE, viewModel.userLongitude)
+            startActivity(intent)
+        }
     }
 
     @Suppress("DEPRECATION")
@@ -232,5 +239,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val LOCATION_PERMISSION_CODE = 100
+        private const val INTENT_EXTRA_LATITUDE = "latitude"
+        private const val INTENT_EXTRA_LONGITUDE = "longitude"
     }
 }

@@ -1,4 +1,4 @@
-package com.github.aayman93.prayertimes.data.source.remote.models
+package com.github.aayman93.prayertimes.data.source.remote.models.prayer_times
 
 data class Date(
     val gregorian: Gregorian,

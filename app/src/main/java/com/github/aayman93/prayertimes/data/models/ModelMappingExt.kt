@@ -1,7 +1,7 @@
 package com.github.aayman93.prayertimes.data.models
 
 import com.github.aayman93.prayertimes.data.source.local.entites.LocalPrayersInfo
-import com.github.aayman93.prayertimes.data.source.remote.models.RemotePrayersInfo
+import com.github.aayman93.prayertimes.data.source.remote.models.prayer_times.RemotePrayersInfo
 
 fun RemotePrayersInfo.toLocalModel(): LocalPrayersInfo {
     return LocalPrayersInfo(

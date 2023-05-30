@@ -19,6 +19,10 @@ class MainViewModel @Inject constructor(
     private var todayDate: Int = 0
     private var currentlyShownDayDate: Int = 0
 
+    var userLatitude: Double = 0.0
+    var userLongitude: Double = 0.0
+
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -37,6 +41,8 @@ class MainViewModel @Inject constructor(
     ) {
         todayDate = day
         currentlyShownDayDate = day
+        userLatitude = latitude
+        userLongitude = longitude
         _isLoading.postValue(true)
         viewModelScope.launch(Dispatchers.Main) {
             val prayerTimes = repository.getTodayPrayerTimes(year, month, day, latitude, longitude)
